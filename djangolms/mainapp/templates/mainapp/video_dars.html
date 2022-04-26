@@ -1,0 +1,34 @@
+{% extends 'mainapp/temp.html'%}
+{% load static %}
+{% block content %}
+     
+
+
+<h1> BU yerda sizga kerakli bo'lgan videolarni topishingiz mumkin </h1>
+{% for video in videos%}
+
+<iframe width="800" height="455" src="{{ video.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+{% endfor %}
+<p> page : {{page.number}}/{{page.paginator.num_pages}} </p>
+
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page.number }} of {{ page.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>  
+
+{% endblock  %}

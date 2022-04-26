@@ -1,0 +1,58 @@
+{% extends 'mainapp/temp.html' %}
+{% block content %}
+
+<div class="col-lg-12 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Table with contextual classes</h4>
+        <a href= "{%  url "course_c" %}" >
+          Add course
+        </a>
+        <div class="table-responsive pt-3">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>
+                  title
+                </th>
+                <th>
+                  Price
+                </th>
+                <th>
+                  lesson_qty
+                </th>
+                <th>
+                  icons
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+               {% for course in courses %}
+               <tr class="table-info">
+                <td>
+                  {{course.title}}
+                </td>
+                <td>
+                  {{course.price}}
+                </td>
+                <td>
+                  {{course.lesson_qty}}
+                </td>
+                <td>
+                  <a href = "{% url 'course_u' course.id %}"
+                  <i class = "ti-pencil btn-icon-pren>"></i>
+                </a>
+                <a href="{% url 'course_d' course.id %}">
+                  <i class="ti-trash btn-icon-prepend"></i></a>
+                </td>
+              </tr>
+                {%endfor%} 
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
