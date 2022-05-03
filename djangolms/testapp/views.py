@@ -6,6 +6,7 @@ from .forms import *
 from django.core.paginator import Paginator
 
 
+
 def video_dars(request):
     videos = Video_dars.objects.all()
     paginator = Paginator(videos, 2) # Show 25 contacts per page.
@@ -19,6 +20,8 @@ def video_dars(request):
     }
     return render(request,'mainapp/video_dars.html',context)  
     
+def video_list(request):
+    return render(request,'mainapp/vidyo_yuklash.html')
 
 # Create your views here.
 #def mainpage(request):

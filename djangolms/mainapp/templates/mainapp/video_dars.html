@@ -5,7 +5,7 @@
 
 
 <h1> BU yerda sizga kerakli bo'lgan videolarni topishingiz mumkin </h1>
-{% for video in videos%}
+{% for video in page_obj.object_list %}
 
 <iframe width="800" height="455" src="{{ video.video_url}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

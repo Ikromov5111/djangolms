@@ -32,5 +32,5 @@ urlpatterns = [
     
     
     path("video-dars/", views.video_dars , name = "video_dars" ),
-    
+    path("video-c/",views.video_list, name = "video_c"),
     ]
