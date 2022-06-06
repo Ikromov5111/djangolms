@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-o5i@qe@p)s57mlzgv6$dj$=s8%3##m8v7mciveu==5=ftb=eh_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,11 +38,31 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites', # Add this
     # bizniki
     'mainapp.apps.MainappConfig',
     'testapp.apps.TestappConfig',
+    'quizapp.apps.QuizappConfig',
+    'apiapp.apps.ApiappConfig',
+    'authapp.apps.AuthappConfig',
+    'mentorapp.apps.MentorappConfig',
+    
+    
     # 3- tomon tayyor applar    
-    'widget_tweaks',    
+    'widget_tweaks',  
+    'import_export',
+    # rest api
+    'rest_framework',
+    
+
+    # Add the following django-allauth apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google', # for Google OAuth 2.0
+    # ...  
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -124,7 +144,50 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+
+# Additional configuration settings
+SOCIALACCOUNT_QUERY_EMAIL = True
+ACCOUNT_LOGOUT_ON_GET= True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_REQUIRED = True
+
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 100
+    # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    # 'PAGE_SIZE': 100
+}
+
+
+EMAIL_BACKEND  =  "django.core.mail.backends.filebased.EmailBackend" 
+EMAIL_FILE_PATH  =  BASE_DIR  /  "sent_emails"

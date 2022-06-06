@@ -72,3 +72,5 @@ class Video_dars(models.Model):
     birinchi_kirish = models.DateTimeField(auto_now_add = True)
     
 
+
+    
