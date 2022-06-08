@@ -1,0 +1,92 @@
+{% extends 'mainapp/temp.html'%}
+
+
+{% load static %}
+
+{% block content %}
+<div class="col-lg-12 stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Table with contextual classes</h4>
+        <a href= "{%  url "mentee_c" %}" >
+          Add Mentee
+        </a>
+        <div class="table-responsive pt-3">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>
+                  Full name
+                </th>
+                <th>
+                 Birth data
+                  
+                </th>
+                <th>
+                    gender
+                </th>
+                <th>
+                    email
+                </th>
+                <th>
+                    phone
+                </th>
+                <th>
+                    Address
+                </th>
+                <th>
+                    Group
+                </th>
+                <th>
+                    Payment
+                </th>
+                
+                <th>
+                  icons
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+               {%for mentee in mentees%}
+               <tr class="table-info">
+                <td>
+                  {{mentee.full_name}}
+                </td>
+                <td>
+                  {{mentee.birth_date}}
+                </td>
+                <td>
+                  {{mentee.gender}}
+                </td>
+                <td>
+                    {{mentee.email}}
+                </td>
+                <td>
+                    {{mentee.phone}}
+                </td>
+                <td>
+                    {{mentee.address}}
+                </td>
+                <td>
+                    {{mentee.group}}
+                </td>
+                <td>
+                    {{mentee.payment}}
+                </td>
+
+                <td>
+                  <a href = "{% url 'mentee_u' mentee.id   %}"
+                  <i class = "ti-pencil btn-icon-pren>"></i>
+                </a>
+                <a href="{% url 'mentee_d' mentee.id  %}">
+                  <i class="ti-trash btn-icon-prepend"></i></a>
+                </td>
+              </tr>
+                {%endfor%} 
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

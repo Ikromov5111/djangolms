@@ -1,0 +1,79 @@
+{% extends 'mainapp/temp.html' %}
+{% load static %}
+{% block content %}
+    <!-- Modal -->
+    <div class="modal fade"
+         id="exampleModal"
+         tabindex="-1"
+         aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">Rostan ham ushbu "{{ group.title }}" kursni o'chirib tashlamoqchimisiz</div>
+                <div class="modal-footer">
+                    <form class="pt-3"   method= "POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary mb-2">Delete</button>
+                        <a href="{% url 'group_t' %}"
+                           class="btn btn-light"
+                           data-bs-dismiss="modal">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Group table</h4>
+            <p class="card-description">
+                <a href="{% url 'group_c' %}">Add Group</a><code>.table-blue</code>
+            </p>
+            <div class="table-responsive pt-3">
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th>title</th>
+                            <th>course</th>
+                            <th>Mentor</th>
+                            <th>Student qty</th>
+                            <th>icons</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for group in groups  %}
+                            <tr>
+                                <td>{{ group.title }}</td>
+                                <td>{{ group.course }}</td>
+                                <td>{{ group.mentor }}</td>
+                                <td>{{ group.student_qty }}</td>
+                                <td>
+                                    <a href="{% url 'group_u' group.id %}"> <i class="ti-pencil btn-icon-pren"></i>
+                                </a>
+                                <form class="pt-3"   method= "POST">
+                                    {% csrf_token %}
+                                    <a href="{% url 'group_d' group.id %}" type="submit">
+                                        <i class="ti-trash btn-icon-prepend"></i>
+                                    </a>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+
+
+
+
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
