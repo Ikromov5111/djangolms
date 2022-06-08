@@ -1,0 +1,58 @@
+{% extends 'mainapp/temp.html'%}
+{% load widget_tweaks %}
+{% load static %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Mentee form</h4>
+      <p class="card-description">
+        Basic form layout
+      </p>
+      <form class="forms-sample" method="POST">
+          {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleInputUsername1">Fullname</label>
+          {% render_field form.full_name type="text" class="form-control" id="exampleInputUsername1" placeholder="Fullname"%}
+         
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1"> Birth data</label>
+          {% render_field form.birth_date type="date"class="form-control" id="exampleInputEmail1" placeholder="Birth data " %}
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Gender</label>
+          {% render_field form.gender type="dropdown" class="form-control" placeholder="Male"%}
+        </div>
+        <div class="form-group">
+          <label for="exampleInputConfirmPassword1">Phone</label>
+          {% render_field form.phone type="tel" class="form-control"placeholder="phone number" %}
+        </div>
+        <div class="form-group">
+            <label for="exampleInputConfirmPassword1">Email</label>
+            {% render_field form.email type="email" class="form-control"placeholder="email" %}
+        </div>
+        <div class="form-group">  
+            <label for="exampleInputConfirmPassword1">Address</label>
+            {% render_field form.address type="text" class="form-control"placeholder="Address" %}
+        </div>
+        <div class="form-group">
+            <label for="exampleInputConfirmPassword1">Group</label>
+            {% render_field form.group type="text" class="form-control"placeholder="Group" %}
+        </div>
+        <div class="form-group">
+            <label for="exampleInputConfirmPassword1">payment</label>
+            {% render_field form.payment type="dropdown" class="form-control"placeholder="Group" %}
+        </div>
+        <div class="form-check form-check-flat form-check-primary">
+          <label class="form-check-label">
+            <input type="checkbox" class="form-check-input">
+            Remember me
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+        <button class="btn btn-light">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

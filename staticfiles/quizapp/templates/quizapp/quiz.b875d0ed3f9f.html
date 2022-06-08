@@ -1,0 +1,16 @@
+{% extends 'mainapp/temp.html' %}
+{% load static %}
+{% block content %}
+    <div class="containerS mt-5 pt-5">
+        <div class="row">
+            {% for course in courses %}
+            <div class="col-lg-3">
+                {% comment %} <div class="template-demo"> {% endcomment %}
+                <a href="/{{course.id}}"  class="btn btn-primary">{{ course.course_name }}</a>
+
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+{% endblock  %}
