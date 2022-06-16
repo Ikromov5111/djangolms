@@ -4,6 +4,7 @@ from django.contrib.auth import get_user
 
 
 
+
 GENDER = [
     ("Male" , "Male"),
     ("Female", "Female")
@@ -107,7 +108,7 @@ class Lesson(models.Model):
     }
     
     group = models.ForeignKey(Group,on_delete=models.SET_NULL,null = True, blank=True)
-    author = get_user
+    author = models.CharField(max_length=60)
     lesson_num = models.PositiveIntegerField()
     topic = models.CharField(max_length=150)
     added_time = models.DateTimeField(auto_now_add=True)
@@ -117,15 +118,16 @@ class Lesson(models.Model):
     
     
     def __str__(self):
-        return str(self.group)+ self.lesson_num + self.topic
+        return self.topic
     
         
 class Homework(models.Model):
     group = models.ForeignKey(Group,on_delete=models.SET_NULL,blank=True, null=True)
     lesson = models.ForeignKey(Lesson, on_delete=models.SET_NULL, blank=True, null=True)
     task = models.TextField()
-    add_time = models.DateTimeField()
+    add_time = models.DateTimeField(auto_now_add=True)
     deadline = models.DateTimeField()
+    
 
     def __str__(self):
         return str(self.lesson)

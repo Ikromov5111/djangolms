@@ -30,6 +30,20 @@ urlpatterns = [
     path("mentee_d/<str:pk>", views.mentee_d,name="mentee_d"),
     path("mentee_u/<str:pk>", views.mentee_u,name="mentee_u"),
     
+    path("lesson-c/",views.lesson_c, name= "lesson_c"),
+    path("lesson-t/", views.lesson_t,name = "lesson_t"),
+    path("lesson-u/<int:pk>",views.lesson_u, name = 'lesson_u'),
+    path("lesson-d/<int:pk>", views.lesson_d, name = "lesson_d"),
+    
+    path("homework-c/",views.homework_c, name= "homework_c"),
+    path("homework-t/", views.homework_t,name = "homework_t"),
+    path("homework-u/<int:pk>",views.homework_u, name = 'homework_u'),
+    path("homework-d/<int:pk>", views.homework_d, name = "homework_d"),
+    
+    path("homeworksubmition-c/",views.homeworksubmition_c, name= "homeworksubmition_c"),
+    path("homeworksubmition-t/", views.homeworksubmition_t,name = "homeworksubmition_t"),
+    path("homeworksubmition-u/<int:pk>",views.homeworksubmition_u, name = 'homeworksubmition_u'),
+    path("homeworksubmition-d/<int:pk>", views.homeworksubmition_d, name = "homeworksubmition_d"),
     
     path("video-dars/", views.video_dars , name = "video_dars" ),
     path("video-c/",views.video_list, name = "video_c"),

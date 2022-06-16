@@ -45,7 +45,7 @@ class CreateHomeworkForm(forms.ModelForm):
 class CreateHomeworkSubmitionForm(forms.ModelForm):
     class Meta:
         model = HomeworkSubmition
-        fields = "__all__"
+        fields = ['homework','link','information','homework_file']
    
 class CreateLessonForm(forms.ModelForm):
     class Meta:

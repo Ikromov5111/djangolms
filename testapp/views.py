@@ -320,4 +320,162 @@ def mentee_d(request,pk):
     return render(request, 'mainapp/mentee_delete.html', context)
 
 
+def lesson_c(request):
+    form = CreateLessonForm()
+    if request.method == "POST":
+        form = CreateLessonForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('lesson_t')
+        else :
+            form = CreateLessonForm()
+            
+    context = {
+        "form":form
+    }
+    
+    return render(request,'testapp/lesson_c.html',context)
 
+def lesson_t(request):
+    lessons = Lesson.objects.all().order_by(("-id"))
+    context = {
+        "lessons":lessons
+    }
+    return render(request,"testapp/lesson_t.html",context)
+
+def lesson_u(request, pk):
+    lesson = Lesson.objects.get(id=pk)
+    form = CreateLessonForm(instance=lesson)
+    if request.method == "POST":
+        form = CreateLessonForm(request.POST, instance=lesson)
+        if form.is_valid():
+            form.save()
+            return redirect('lesson_t')
+        else :
+            form = CreateLessonForm(instance=lesson)
+            
+    context = {
+        "form" : form,
+        "lesson" : lesson
+    }
+    
+    return render(request,'testapp/lesson_c.html',context)
+  
+  
+def lesson_d(request,pk):
+    lesson = Lesson.objects.get(id=pk)
+    if request.method == "POST":
+        lesson.delete()   
+        return redirect("lesson_t")   
+    context ={
+        "lesson": lesson
+        }
+    return render(request,"testapp/lesson_d.html",context)
+    
+    
+def homework_c(request):
+    form = CreateHomeworkForm()
+    if request.method == "POST":
+        form = CreateHomeworkForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('homework_t')
+        else :
+            form = CreateHomeworkForm()
+            
+    context = {
+        "form":form
+    }
+    
+    return render(request,'testapp/homework_c.html',context)
+
+def homework_t(request):
+    homework = Homework.objects.all().order_by(("-id"))
+    context = {
+        "homework":homework
+    }
+    return render(request,"testapp/homework_t.html",context)
+
+def homework_u(request, pk):
+    homework = Homework.objects.get(id=pk)
+    form = CreateHomeworkForm(instance=homework)
+    if request.method == "POST":
+        form = CreateHomeworkForm(request.POST, instance=homework)
+        if form.is_valid():
+            form.save()
+            return redirect('homework_t')
+        else :
+            form = CreateHomeworkForm(instance=homework)
+            
+    context = {
+        "form" : form,
+        "homework" : homework
+    }
+    
+    return render(request,'testapp/homework_c.html',context)
+  
+  
+def homework_d(request,pk):
+    homework = Homework.objects.get(id=pk)
+    if request.method == "POST":
+        homework.delete()   
+        return redirect("homework_t")   
+    context ={
+        "homework": homework
+        }
+    return render(request,"testapp/homework_d.html",context)
+    
+    
+def homeworksubmition_c(request):
+    form = CreateHomeworkSubmitionForm()
+    if request.method == "POST":
+        form = CreateHomeworkSubmitionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('homeworksubmition_t')
+        else :
+            form = CreateHomeworkSubmitionForm()
+            
+    context = {
+        "form":form
+    }
+    
+    return render(request,'testapp/homeworksubmition_c.html',context)
+
+def homeworksubmition_t(request):
+    homeworksubmitions = HomeworkSubmition.objects.all().order_by(("-id"))
+    context = {
+        "homeworksubmitions":homeworksubmitions
+    }
+    return render(request,"testapp/homeworksubmition_t.html",context)
+
+def homeworksubmition_u(request, pk):
+    homework = HomeworkSubmition.objects.get(id=pk)
+    form = CreateHomeworkSubmitionForm(instance=homework)
+    if request.method == "POST":
+        form = CreateHomeworkSubmitionForm(request.POST, instance=homework)
+        if form.is_valid():
+            form.save()
+            return redirect('homeworksubmition_t')
+        else :
+            form = CreateHomeworkSubmitionForm(instance=homework)
+            
+    context = {
+        "form" : form,
+        "homework" : homework
+    }
+    
+    return render(request,'testapp/homeworksubmition_c.html',context)
+  
+  
+def homeworksubmition_d(request,pk):
+    homeworksubmition = HomeworkSubmition.objects.get(id=pk)
+    if request.method == "POST":
+        homeworksubmition.delete()   
+        return redirect("homeworksubmition_t")   
+    context ={
+        "homeworksubmition": homeworksubmition
+        }
+    return render(request,"testapp/homeworksubmition_d.html",context)
+    
+    

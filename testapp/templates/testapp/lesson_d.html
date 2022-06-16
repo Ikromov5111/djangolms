@@ -1,0 +1,15 @@
+{% extends "mainapp/temp.html" %}
+{% block content %}
+    <div class="card">
+        <p class="card-description">
+            Rostan ham ushbu "{{ lesson.group }}" guruhga qoyilgan {{lesson.lesson_num}} - darsni o'chirib tashlamoqchimisiz
+        </p>
+        <div class="card-body">
+            <form class="pt-3"   method= "POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary mb-2">Delete</button>
+                <a href = "{% url 'lesson_t' %}"class="btn btn-light">Cancel</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
